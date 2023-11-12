@@ -12,17 +12,14 @@ export const AppContext = createContext<{
     balance: {playerBalance: number,
     adminBalance: number},
     reset: () => void,
-    tickets: {
-        numbers: number[],
-        owner: "player" | "admin",
-        luckyHit?: number
-    }[],
+    tickets: Ticket[],
     addTickets: (newTickets: Ticket[]) => void,
     checkWinningTickets: (numbers: number[]) => void,
     changePlayerBalance: (amount: number) => void
     changeAdminBalance: (amount: number) => void,
     buyTicket: () => void,
     newRound: () => void,
+    playerTickets: Ticket[],
 
     
 }>({
@@ -38,11 +35,14 @@ export const AppContext = createContext<{
     changePlayerBalance: () => {},
     buyTicket: () => {},
     newRound: () => {},
+    playerTickets: [],
 })
 
 export function AppContextProvider({children}: {children: ReactNode}) {
 
 const [currentUser, setCurrentUser] = useState<"admin" | "player">("player")
+
+const [playerTickets, setPlayerTickets] = useState<Ticket[]>([])
 
 const [balance, setBalance]= useState<{playerBalance: number,
 adminBalance: number}>({
@@ -54,6 +54,8 @@ useEffect(() => {
     localStorage.setItem("playermoney", JSON.stringify(balance.playerBalance));
     localStorage.setItem("adminmoney", JSON.stringify(balance.adminBalance));
 }, [balance]);
+
+
 
 
 function changeCurrentUser() {
@@ -137,6 +139,11 @@ function checkWinningTickets(winningNumbers: number[]){
    setTickets([...TicketsWithHits])
 }
 console.log(tickets)
+
+useEffect(() => {
+  const filteredTickets = tickets.filter(ticket => ticket.owner !== "admin").reverse()
+  setPlayerTickets(filteredTickets)
+}, [tickets])
     
 
     return <AppContext.Provider value={{
@@ -150,7 +157,8 @@ console.log(tickets)
         changeAdminBalance,
         changePlayerBalance,
         buyTicket,
-        newRound
+        newRound,
+        playerTickets
 
     }}>{children}</AppContext.Provider>
 }

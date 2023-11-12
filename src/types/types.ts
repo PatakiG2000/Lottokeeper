@@ -1,9 +1,10 @@
 export type user = "admin" | "player"
 
 export type Ticket = {
-    numbers: number[],
+    numbers: number[]
     owner: "player" | "admin"
     luckyHit?: number | undefined
+    id?: string
 }
 
 export type Statistics = {

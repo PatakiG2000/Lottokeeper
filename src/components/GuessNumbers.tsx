@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useContext } from 'react'
 import { AppContext } from '../context/appContext'
+import { nanoid } from "nanoid"
+
 
 
 type Props = {}
@@ -35,7 +37,7 @@ const GuessNumbers = (props: Props) => {
             setSelectedNumbers([])
             return
         }
-            addTickets([{numbers: selectedNumbers, owner: "player"}])
+            addTickets([{numbers: selectedNumbers, owner: "player", id: nanoid()}])
             buyTicket()
             setSelectedNumbers([])
     }

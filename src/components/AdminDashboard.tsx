@@ -5,6 +5,7 @@ import React from 'react'
 import { Ticket } from "../types/types"
 import LottoTicket from "./LottoTicket"
 import Statistics from "./Statistics"
+import { nanoid } from "nanoid"
 
 type Props = {}
 
@@ -30,12 +31,20 @@ const AdminDashboard = (props: Props) => {
     return winningNumbers
   }
 
+  const [numberOfGames, setNumberOfGames] = useState<number>(0)
+
   function generateTickets(amount: number) {
+    if(amount === 0) {
+      return
+    }
+    if(amount >= 7500) {
+      return
+    }
 
     const generatedTickets: Ticket[] = []
     for (let i = 0; i < amount; i++) {
       const ticket = generateFiveRandomNumbers()
-      generatedTickets.push({numbers: ticket, owner: "admin"})
+      generatedTickets.push({numbers: ticket, owner: "admin", id: nanoid()})
     }
     addTickets(generatedTickets)
     changeAdminBalance(balance.adminBalance + amount * 500)
@@ -54,12 +63,13 @@ const AdminDashboard = (props: Props) => {
 
   return (
     <>
-    <button onClick={() => generateTickets(30)}>Generate 30 tickets</button>
+    <input type="number" onChange={(e) => setNumberOfGames(Number(e.target.value))} max={7500} placeholder="0 - 7499"/>
+    <button onClick={() => generateTickets(numberOfGames)} disabled={numberOfGames < 1}>Generate {numberOfGames} tickets</button>
     <div>AdminDashboard</div>
     <button onClick={() => generateWinningNumbers()}>Sorsolás</button>
     <Statistics/>
     {winningNumbers}
-    {orderedTickets.map((ticket) => (<LottoTicket numbers={ticket.numbers} owner={ticket.owner} luckyHit={ticket?.luckyHit}/>))}
+    {orderedTickets.map((ticket) => (<LottoTicket numbers={ticket.numbers} owner={ticket.owner} luckyHit={ticket?.luckyHit} key={ticket.id}/>))}
 
     </>
     
