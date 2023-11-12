@@ -1,21 +1,20 @@
 import React from 'react'
+import { useContext } from 'react'
+import { AppContext } from '../context/appContext'
 
 
 
 
 type Props = {
-  balance: {playerBalance: number,
-    adminBalance: number},
   currentUser: "player" | "admin"
 }
 
-/* Propsba kapja meg a usert meg az összeget ? */
-
-const Money = ({balance, currentUser}: Props) => {
+const Money = ({ currentUser }: Props) => {
+  const { balance } = useContext(AppContext)
 
   return (
     <>
-    {balance[`${currentUser}Balance`]}  
+    {balance[`${currentUser}Balance`]} Akcse
     </>
 
   )

@@ -4,18 +4,21 @@ import { AppContext } from './context/appContext';
 import PlayerDashboard from './components/PlayerDashboard';
 import AdminDashboard from './components/AdminDashboard';
 
+
 import './App.css';
 
 function App() {
 
-  const { currentUser, changeCurrentUser, balance, changeBalance, reset } = useContext(AppContext)
+  const { currentUser, changeCurrentUser, reset, newRound } = useContext(AppContext)
 
 
   return (
     <div className="App">
-   <Money balance={balance} currentUser={currentUser}/>
-   <button onClick={() => changeCurrentUser()}>SwitchTryout</button>
-   <button onClick={() => reset()}>Reset</button>
+   <Money currentUser={currentUser}/>
+   <button onClick={() => changeCurrentUser()}>Switch</button>
+
+   {currentUser === "admin" && <button onClick={() => reset()}>New Game</button>}
+   {currentUser === "admin" &&  <button onClick={() => newRound()}>New Round</button>}
    {currentUser === "player" && <PlayerDashboard />}
    {currentUser === "admin" && <AdminDashboard />}
     </div>

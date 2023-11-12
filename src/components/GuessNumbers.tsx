@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useContext } from 'react'
+import { AppContext } from '../context/appContext'
 
 
 type Props = {}
@@ -6,8 +8,8 @@ type Props = {}
 const GuessNumbers = (props: Props) => {
 
     const [selectedNumbers, setSelectedNumbers] = useState<number[]>([])
+    const { addTickets, buyTicket, balance } = useContext(AppContext)
 
-    console.log(selectedNumbers)
     function lotteryButtonAction(num: number){
         if(selectedNumbers.includes(num)) {
             const filteredNumbers = selectedNumbers.filter(n => n !== num)
@@ -27,12 +29,23 @@ const GuessNumbers = (props: Props) => {
         arrayOfNumbers.push(<button key={i} onClick={() => lotteryButtonAction(i)} style={{backgroundColor: selectedNumbers.includes(i) ? "red" : "green"}}>{i}</button>)
     }
 
+    function generateTicket() {
+        if(balance.playerBalance < 500) {
+            alert("Please deposit more money")
+            setSelectedNumbers([])
+            return
+        }
+            addTickets([{numbers: selectedNumbers, owner: "player"}])
+            buyTicket()
+            setSelectedNumbers([])
+    }
+
   return (
     <div>
         GuessNumbers
         {arrayOfNumbers}
         {selectedNumbers.length !== 5 ? `Please select ${Math.abs(selectedNumbers.length - 5)} more!` : "All numbers are selected for this ticket"}
-        <button onClick={() => console.log(selectedNumbers)} disabled={selectedNumbers.length !== 5}>Submit</button>
+        <button onClick={generateTicket} disabled={selectedNumbers.length !== 5}>Submit</button>
     </div>
   )
 }
