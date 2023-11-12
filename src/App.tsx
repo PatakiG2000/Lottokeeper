@@ -1,21 +1,23 @@
 import React, { useContext } from 'react';
-import GuessNumbers from './components/GuessNumbers';
 import Money from './components/Money';
 import { AppContext } from './context/appContext';
+import PlayerDashboard from './components/PlayerDashboard';
+import AdminDashboard from './components/AdminDashboard';
 
 import './App.css';
 
 function App() {
 
-  const { currentUser, changeCurrentUser } = useContext(AppContext)
+  const { currentUser, changeCurrentUser, balance, changeBalance, reset } = useContext(AppContext)
 
 
   return (
     <div className="App">
-      {currentUser}
-   App <Money />
-   <GuessNumbers />
+   <Money balance={balance} currentUser={currentUser}/>
    <button onClick={() => changeCurrentUser()}>SwitchTryout</button>
+   <button onClick={() => reset()}>Reset</button>
+   {currentUser === "player" && <PlayerDashboard />}
+   {currentUser === "admin" && <AdminDashboard />}
     </div>
   );
 }
