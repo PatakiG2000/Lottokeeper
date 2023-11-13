@@ -1,0 +1,18 @@
+.playerticket-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.playerticket-list li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+}
+
+.playerticket-header {
+    display: flex;
+    justify-content: space-between;
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useContext } from 'react'
 import { AppContext } from '../context/appContext'
 import { nanoid } from "nanoid"
+import "../styles/guessNumbers.css"
 
 
 
@@ -28,7 +29,7 @@ const GuessNumbers = (props: Props) => {
     const arrayOfNumbers = []
 
     for (let i = 1; i <= 39; i++) {
-        arrayOfNumbers.push(<button key={i} onClick={() => lotteryButtonAction(i)} style={{backgroundColor: selectedNumbers.includes(i) ? "red" : "green"}}>{i}</button>)
+        arrayOfNumbers.push(<button className='guess-button' key={i} onClick={() => lotteryButtonAction(i)} style={{backgroundColor: selectedNumbers.includes(i) ? "red" : "green"}} ><p>{i}</p></button>)
     }
 
     function generateTicket() {
@@ -43,11 +44,15 @@ const GuessNumbers = (props: Props) => {
     }
 
   return (
-    <div>
-        GuessNumbers
+    <div className='guess-component'>
+        <h2 className=''>Choose the numbers for your next ticket!</h2>
+        <div className='number-container'>
         {arrayOfNumbers}
+        </div>
+        <h2>
         {selectedNumbers.length !== 5 ? `Please select ${Math.abs(selectedNumbers.length - 5)} more!` : "All numbers are selected for this ticket"}
-        <button onClick={generateTicket} disabled={selectedNumbers.length !== 5}>Submit</button>
+        </h2>
+        <button onClick={generateTicket} disabled={selectedNumbers.length !== 5} className='submit-button'>Submit</button>
     </div>
   )
 }

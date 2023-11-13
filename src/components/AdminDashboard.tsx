@@ -10,14 +10,15 @@ type Props = {}
 
 const AdminDashboard = (props: Props) => {
 
-  const { balance, tickets, drawn, changeAdminBalance,  addTickets, draw } = useContext(AppContext)
+
+  const { balance, tickets, drawn, changeAdminBalance, addTickets, draw } = useContext(AppContext)
   const [winningNumbers, setWinningNumbers] = useState<null | number[]>(null)
   const [numberOfGames, setNumberOfGames] = useState<number>(0)
 
   function generateFiveRandomNumbers(): number[] {
     const numbers = []
     for (let i = 0; i < 5; i++ ) {
-      numbers.push(Math.floor(Math.random() * 39.99))
+      numbers.push(Math.floor(Math.random() * 39.99 + 1))
     }
     return numbers
   }

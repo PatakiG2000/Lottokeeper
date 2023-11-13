@@ -1,0 +1,45 @@
+.guess-component {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+}
+
+.guess-component h2 {
+    margin:  0 auto;
+    padding: 12px;
+}
+
+.guess-button {
+    cursor: pointer;
+    border-radius: 6px;
+    border: 2px solid blue;
+    font-size: 20px;
+    font-weight: 700;
+
+}
+
+.guess-button:hover {
+    color: red;
+}
+
+.submit-button {
+    margin: auto;
+    font-size: 16px;
+    padding: 8px 20px;
+    border-radius: 6px;
+    border: 2px solid blue;
+}
+
+
+.number-container {
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    gap: 5px;
+    
+}
+
+@media (max-width: 688px) {
+    .number-container {
+        grid-template-columns: repeat(5, 1fr);
+    }
+  }
