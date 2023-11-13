@@ -1,7 +1,6 @@
 
-import { useContext, useState } from "react"
+import { useContext,  useState } from "react"
 import { AppContext } from "../context/appContext"
-import React from 'react'
 import { Ticket } from "../types/types"
 import LottoTicket from "./LottoTicket"
 import Statistics from "./Statistics"
@@ -11,27 +10,32 @@ type Props = {}
 
 const AdminDashboard = (props: Props) => {
 
-  const { changeAdminBalance, balance, addTickets, tickets, checkWinningTickets } = useContext(AppContext)
+  const { balance, tickets, drawn, changeAdminBalance,  addTickets, draw } = useContext(AppContext)
+  const [winningNumbers, setWinningNumbers] = useState<null | number[]>(null)
+  const [numberOfGames, setNumberOfGames] = useState<number>(0)
 
   function generateFiveRandomNumbers(): number[] {
     const numbers = []
     for (let i = 0; i < 5; i++ ) {
       numbers.push(Math.floor(Math.random() * 39.99))
     }
-    console.log(numbers)
     return numbers
   }
 
-  const [winningNumbers, setWinningNumbers] = useState<null | number[]>(null)
+
 
   function generateWinningNumbers() {
-    const winningNumbers = generateFiveRandomNumbers()
-    setWinningNumbers(winningNumbers)
-    checkWinningTickets(winningNumbers!)
-    return winningNumbers
+    if(tickets.length < 1){
+      alert("Please generate tickets first either as an admin or player")
+      return
+    }
+    if(!drawn) {
+      const winningNumbers = generateFiveRandomNumbers()
+      setWinningNumbers(winningNumbers)
+      draw(winningNumbers)
+      return winningNumbers
+    }
   }
-
-  const [numberOfGames, setNumberOfGames] = useState<number>(0)
 
   function generateTickets(amount: number) {
     if(amount === 0) {
@@ -63,14 +67,13 @@ const AdminDashboard = (props: Props) => {
 
   return (
     <>
-    <input type="number" onChange={(e) => setNumberOfGames(Number(e.target.value))} max={7500} placeholder="0 - 7499"/>
-    <button onClick={() => generateTickets(numberOfGames)} disabled={numberOfGames < 1}>Generate {numberOfGames} tickets</button>
-    <div>AdminDashboard</div>
-    <button onClick={() => generateWinningNumbers()}>Sorsolás</button>
-    <Statistics/>
-    {winningNumbers}
-    {orderedTickets.map((ticket) => (<LottoTicket numbers={ticket.numbers} owner={ticket.owner} luckyHit={ticket?.luckyHit} key={ticket.id}/>))}
-
+      <input type="number" onChange={(e) => setNumberOfGames(Number(e.target.value))} max={7500} placeholder="0 - 7499"/>
+      <button onClick={() => generateTickets(numberOfGames)} disabled={numberOfGames < 1}>Generate {numberOfGames} tickets</button>
+      <div>AdminDashboard</div>
+      <button onClick={() => generateWinningNumbers()} disabled={drawn} >Sorsolás</button>
+      <Statistics />
+      {winningNumbers}
+      {orderedTickets.map((ticket) => (<LottoTicket numbers={ticket.numbers} owner={ticket.owner} luckyHit={ticket?.luckyHit}  key={ticket.id}/>))}
     </>
     
   )

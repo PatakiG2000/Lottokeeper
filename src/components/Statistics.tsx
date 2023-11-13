@@ -1,63 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useContext } from 'react'
 import { AppContext } from '../context/appContext'
-import { Statistics } from '../types/types'
 
-type Props = {}
+
+type Props = {
+
+    
+}
 
 const StatisticsModule = (props: Props) => {
 
-    const { tickets } = useContext(AppContext)
-    const [statistics, setStatistics] = useState<Statistics>({
-        fiveHits: 0,
-        fourHits: 0,
-        threeHits: 0,
-        twoHits: 0,
-        noHit: 0,
-    })
+   /*  Statisztikát kapja meg a contextből!!! */
+  /*  A rewardokkal együtt! */
 
-    function calculateStatistics() {
-        const stats: Statistics = {
-            fiveHits: 0,
-            fourHits: 0,
-            threeHits: 0,
-            twoHits: 0,
-            noHit: 0,
-        }
-        tickets.forEach(ticket => {
-            if(ticket.luckyHit === 5){
-                stats.fiveHits++
-            } else if(ticket.luckyHit === 4) {
-                stats.fourHits++
-            } else if(ticket.luckyHit === 3)  {
-                stats.threeHits++
-            } else if(ticket.luckyHit === 2) {
-                stats.twoHits++
-            } else if (ticket.luckyHit === 1 || ticket.luckyHit === 0) {
-                stats.noHit++
-        }
-    })
-
-    setStatistics(stats)
-}
-
-useEffect(() => {
-    calculateStatistics()
-}, [tickets])
-
-
+  const { statistics, tickets } = useContext(AppContext)
 
   return (
     <>
     <div>Összes szelvény: {tickets.length} </div>
     <div>Összes bevétel: {tickets.length * 500} Akcse</div>
-    <div>5 hit: {statistics.fiveHits} Nyeremény szelvényenként: </div>
-    <div>4 hit: {statistics.fourHits}  Nyeremény szelvényenként: </div>
-    <div>3 hit: {statistics.threeHits} Nyeremény szelvényenként: </div>
-    <div>2 hit: {statistics.twoHits}  Nyeremény szelvényenként: </div>
-    <div>No hit: {statistics.noHit} </div>
-    <div>Összes kifizetendő nyeremény: </div>
-    <div>Összes bevétel: {tickets.length * 500} </div>
+    <div>5 hit: {statistics?.fiveHits} Nyeremény szelvényenként: {statistics?.fiveHitsVictory}</div>
+    <div>4 hit: {statistics?.fourHits}  Nyeremény szelvényenként: {statistics?.fourHitsVictory}</div>
+    <div>3 hit: {statistics?.threeHits} Nyeremény szelvényenként: {statistics?.threeHitsVictory}</div>
+    <div>2 hit: {statistics?.twoHits}  Nyeremény szelvényenként: {statistics?.twoHitsVictory}</div>
+    <div>No hit: {statistics?.noHit} </div>
+    <div>Összes kifizetendő nyeremény: {statistics?.amountNeedToBePaid} Akcse</div>
+    <div>Összes nyereség: {tickets.length * 500 - statistics?.amountNeedToBePaid} </div>
     </>
   )
 }

@@ -3,7 +3,7 @@ import { Ticket } from '../types/types'
 
 
 
-const LottoTicket = ({numbers, owner, luckyHit}: Ticket) => {
+const LottoTicket = ({numbers, owner, luckyHit, wonAmount}: Ticket) => {
   return (
     <div style={{display: "flex", gap: "2px"}}>
     <div>Ticket</div>
