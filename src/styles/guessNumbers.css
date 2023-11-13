@@ -15,11 +15,27 @@
     border: 2px solid blue;
     font-size: 20px;
     font-weight: 700;
-
+    background: rgba(49, 86, 180, 0.205);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(9.2px);
+-webkit-backdrop-filter: blur(9.2px);
+border: 1px solid rgba(49, 87, 180, 0.79);
+transition: all 120ms;
 }
 
 .guess-button:hover {
-    color: red;
+    background-color: rgba(0, 76, 255, 0.13);
+}
+
+.guess-button:active {
+    transform: scale(96%);
+}
+
+
+
+.chosen {
+    background: rgba(0, 76, 255, 0.377);
 }
 
 .submit-button {

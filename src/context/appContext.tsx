@@ -10,7 +10,7 @@ import { Statistics } from "../types/types"
 
 export const AppContext = createContext<{
     currentUser: "admin" | "player",
-    changeCurrentUser: () => void,
+    changeCurrentUser: (user: "player" | "admin") => void,
     balance: {playerBalance: number,
     adminBalance: number},
     reset: () => void,
@@ -76,8 +76,8 @@ useEffect(() => {
     localStorage.setItem("adminmoney", JSON.stringify(balance.adminBalance));
 }, [balance]);
 
-function changeCurrentUser() {
-    setCurrentUser(currentUser === "admin" ? "player" : "admin")
+function changeCurrentUser(user: "admin" | "player" = "player") {
+    setCurrentUser(user)
 }
 
 function changeAdminBalance( amount: number) {

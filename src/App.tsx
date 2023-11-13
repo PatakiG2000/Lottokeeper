@@ -24,15 +24,13 @@ function App() {
       <div className='lottery-container'>
         <div className='header'>
       <div>
-      <button>Guest</button>
-      <button>Admin</button>
+        <div className='header-switch'>
+      <button onClick={() => changeCurrentUser("player")}>Guest</button>
+      <button onClick={() => changeCurrentUser("admin")}>Admin</button>
+        </div>
       </div>
       <Money currentUser={currentUser}/>
         </div>
-
-   <button onClick={() => changeCurrentUser()}>Switch</button>
-   {currentUser === "admin" && <button onClick={() => reset()}>New Game</button>}
-   {currentUser === "admin" &&  <button onClick={() => newRound()}>New Round</button>}
    <AnimatePresence mode="wait">
    {currentUser === 'player' && (
             <motion.div

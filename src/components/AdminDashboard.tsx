@@ -6,12 +6,14 @@ import LottoTicket from "./LottoTicket"
 import Statistics from "./Statistics"
 import { nanoid } from "nanoid"
 
+import "../styles/adminDashboard.css"
+
 type Props = {}
 
 const AdminDashboard = (props: Props) => {
 
 
-  const { balance, tickets, drawn, changeAdminBalance, addTickets, draw } = useContext(AppContext)
+  const { balance, tickets, drawn, changeAdminBalance, addTickets, draw, reset, newRound } = useContext(AppContext)
   const [winningNumbers, setWinningNumbers] = useState<null | number[]>(null)
   const [numberOfGames, setNumberOfGames] = useState<number>(0)
 
@@ -68,13 +70,21 @@ const AdminDashboard = (props: Props) => {
 
   return (
     <>
+    <div>
+      <h1>AdminDashboard</h1>
+      <div>
+     <button onClick={() => reset()}>New Game</button>
+    <button onClick={() => newRound()}>New Round</button>
+      </div>
       <input type="number" onChange={(e) => setNumberOfGames(Number(e.target.value))} max={7500} placeholder="0 - 7499"/>
       <button onClick={() => generateTickets(numberOfGames)} disabled={numberOfGames < 1}>Generate {numberOfGames} tickets</button>
-      <div>AdminDashboard</div>
+    </div>
       <button onClick={() => generateWinningNumbers()} disabled={drawn} >Sorsolás</button>
       <Statistics />
       {winningNumbers}
+      <div className="tickets">
       {orderedTickets.map((ticket) => (<LottoTicket numbers={ticket.numbers} owner={ticket.owner} luckyHit={ticket?.luckyHit}  key={ticket.id}/>))}
+      </div>
     </>
     
   )

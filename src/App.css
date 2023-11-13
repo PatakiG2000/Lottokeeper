@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  color: aliceblue;
 }
 
 .App {
@@ -10,7 +12,11 @@
   justify-content: center;
   background-color: #a6a6bc;
 opacity: 0.8;
-background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #a6a6bc 14px ), repeating-linear-gradient( #080a4055, #080a40 );
+background-color: #19191c;
+opacity: 1;
+background-image:  radial-gradient(#1d5250 1px, transparent 1px), radial-gradient(#1d5250 1px, #19191c 1px);
+background-size: 40px 40px;
+background-position: 0 0,20px 20px;
 }
 
 .lottery-container {
@@ -18,17 +24,37 @@ background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #a6a
   height: 90%;
   padding: 80px;
   margin: 0 auto;
-background: rgba(255, 255, 255, 0.25);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(4.4px);
--webkit-backdrop-filter: blur(4.4px);
-border: 1px solid rgba(255, 255, 255, 0.49);
-overflow-y: scroll;
+  overflow-y: scroll;
+  background: rgba(49, 87, 180, 0.01);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.1px);
+  -webkit-backdrop-filter: blur(3.1px);
+  border: 1px solid rgba(49, 87, 180, 0.79);
+}
+
+.lottery-container::-webkit-scrollbar {
+  display: none;
 }
 
 .header {
-  background-color: aquamarine;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  font-size: 36px;
+  font-weight: 700;
 }
+
+.header-switch {
+  display: flex;
+  gap: 6px;
+}
+
+.header-switch button {
+  font-size: 28px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  
+}
+

@@ -29,7 +29,7 @@ const GuessNumbers = (props: Props) => {
     const arrayOfNumbers = []
 
     for (let i = 1; i <= 39; i++) {
-        arrayOfNumbers.push(<button className='guess-button' key={i} onClick={() => lotteryButtonAction(i)} style={{backgroundColor: selectedNumbers.includes(i) ? "red" : "green"}} ><p>{i}</p></button>)
+        arrayOfNumbers.push(<button className={selectedNumbers.includes(i) ? "guess-button chosen" : "guess-button"} key={i} onClick={() => lotteryButtonAction(i)}  ><p>{i}</p></button>)
     }
 
     function generateTicket() {
@@ -45,7 +45,7 @@ const GuessNumbers = (props: Props) => {
 
   return (
     <div className='guess-component'>
-        <h2 className=''>Choose the numbers for your next ticket!</h2>
+        <h2 className=''>Choose numbers for your next ticket!</h2>
         <div className='number-container'>
         {arrayOfNumbers}
         </div>

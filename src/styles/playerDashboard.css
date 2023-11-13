@@ -3,3 +3,14 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
+.player-dashboard-name {
+    display: flex;
+    align-items: center;
+}
+
+.player-dashboard-name button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}

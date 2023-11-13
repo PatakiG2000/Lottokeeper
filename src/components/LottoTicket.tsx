@@ -6,7 +6,7 @@ import "../styles/lottoTicket.css"
 
 const LottoTicket = ({numbers, owner, luckyHit, wonAmount}: Ticket) => {
 
-  const bettingNumbers =  numbers.map((number) => <p>{number}</p>)
+  const bettingNumbers =  numbers.map((number) => <div className='lottery-ticket-number'><p>{number}</p></div>)
 
   return (
     <div className='ticket'>
