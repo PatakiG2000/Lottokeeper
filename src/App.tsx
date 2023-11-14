@@ -1,18 +1,17 @@
-import React, { useContext } from 'react';
-import Money from './components/Money';
-import { AppContext } from './context/appContext';
-import PlayerDashboard from './components/PlayerDashboard';
-import AdminDashboard from './components/AdminDashboard';
+import PlayerDashboard from './components/ui/PlayerDashboard';
+import AdminDashboard from './components/ui/AdminDashboard';
 import { motion, AnimatePresence } from 'framer-motion';
-
-
+import Header from './components/ui/Header';
+import { AppContext } from './context/appContext';
+import { useContext } from 'react'
 
 
 import './App.css';
 
 function App() {
 
-  const { currentUser, changeCurrentUser, reset, newRound } = useContext(AppContext)
+  const { currentUser, changeCurrentUser } = useContext(AppContext)
+
   const variants = {
     hidden: { opacity: 0, x: currentUser === 'player' ? -100 : -100 },
     visible: { opacity: 1, x: 0 },
@@ -22,17 +21,9 @@ function App() {
 
     <div className="App">
       <div className='lottery-container'>
-        <div className='header'>
-      <div>
-        <div className='header-switch'>
-      <button onClick={() => changeCurrentUser("player")}>Guest</button>
-      <button onClick={() => changeCurrentUser("admin")}>Admin</button>
-        </div>
-      </div>
-      <Money currentUser={currentUser}/>
-        </div>
-   <AnimatePresence mode="wait">
-   {currentUser === 'player' && (
+        <Header currentUser={currentUser} changeUser={changeCurrentUser} />
+        <AnimatePresence mode="wait">
+          {currentUser === 'player' && (
             <motion.div
               key="player"
               variants={variants}
@@ -45,7 +36,7 @@ function App() {
               <PlayerDashboard />
             </motion.div>
           )}
-     {currentUser === 'admin' && (
+          {currentUser === 'admin' && (
             <motion.div
               key="admin"
               variants={variants}
@@ -58,7 +49,7 @@ function App() {
               <AdminDashboard />
             </motion.div>
           )}
-           </AnimatePresence>
+        </AnimatePresence>
       </div>
     </div>
   );

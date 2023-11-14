@@ -1,4 +1,4 @@
-export type user = "admin" | "player"
+export type User = "admin" | "player"
 
 export type Ticket = {
     numbers: number[]

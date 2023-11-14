@@ -1,12 +1,11 @@
-import React from 'react'
 import { useContext } from 'react'
 import { AppContext } from '../context/appContext'
-
+import { User } from '../types/types'
 
 
 
 type Props = {
-  currentUser: "player" | "admin"
+  currentUser: User
 }
 
 const Money = ({ currentUser }: Props) => {
@@ -14,7 +13,7 @@ const Money = ({ currentUser }: Props) => {
 
   return (
     <>
-    {balance[`${currentUser}Balance`]} Akcse
+      {balance[`${currentUser}Balance`]} Akcse
     </>
 
   )

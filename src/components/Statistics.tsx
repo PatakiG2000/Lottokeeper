@@ -1,31 +1,33 @@
-import React from 'react'
 import { useContext } from 'react'
 import { AppContext } from '../context/appContext'
+
+import '../styles/statistics.css'
 
 
 type Props = {
 
-    
+
 }
 
 const StatisticsModule = (props: Props) => {
 
-   /*  Statisztikát kapja meg a contextből!!! */
-  /*  A rewardokkal együtt! */
-
-  const { statistics, tickets } = useContext(AppContext)
+  const { statistics, tickets, drawn } = useContext(AppContext)
 
   return (
     <>
-    <div>Összes szelvény: {tickets.length} </div>
-    <div>Összes bevétel: {tickets.length * 500} Akcse</div>
-    <div>5 hit: {statistics?.fiveHits} Nyeremény szelvényenként: {statistics?.fiveHitsVictory}</div>
-    <div>4 hit: {statistics?.fourHits}  Nyeremény szelvényenként: {statistics?.fourHitsVictory}</div>
-    <div>3 hit: {statistics?.threeHits} Nyeremény szelvényenként: {statistics?.threeHitsVictory}</div>
-    <div>2 hit: {statistics?.twoHits}  Nyeremény szelvényenként: {statistics?.twoHitsVictory}</div>
-    <div>No hit: {statistics?.noHit} </div>
-    <div>Összes kifizetendő nyeremény: {statistics?.amountNeedToBePaid} Akcse</div>
-    <div>Összes nyereség: {tickets.length * 500 - statistics?.amountNeedToBePaid} </div>
+      {!drawn && <p>The statistics will be available after the draw</p>}
+      {drawn && <h2>Statistics: </h2>}
+      {drawn && <div className='statistics'>
+        <div>All tickets: <i>{tickets.length}</i> </div>
+        <div>Total revenue: <i>{tickets.length * 500} Akcse</i></div>
+        <div>5 hits: <i>{statistics?.fiveHits}</i>  | Prize per ticket: <i>{statistics?.fiveHitsVictory} $</i></div>
+        <div>4 hits: <i>{statistics?.fourHits} </i>  | Prize per ticket: <i> {statistics?.fourHitsVictory} $</i></div>
+        <div>3 hits: <i>{statistics?.threeHits}</i>  | Prize per ticket: <i> {statistics?.threeHitsVictory} $</i></div>
+        <div>2 hits: <i>{statistics?.twoHits} </i>  | Prize per ticket: <i>{statistics?.twoHitsVictory} $</i></div>
+        <div>No hit:  <i>{statistics?.noHit}</i> </div>
+        <div>Total prizes to be paid: <i>{statistics?.amountNeedToBePaid}</i> Akcse</div>
+        <div>Total profit: <i>{tickets.length * 500 - statistics?.amountNeedToBePaid}</i> </div>
+      </div>}
     </>
   )
 }

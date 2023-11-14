@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.header-switch {
+  display: flex;
+  gap: 6px;
+}
+
+.header-switch button {
+  font-size: 28px;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+}
+
+
+.currentuser {
+  color: white;
+  transition: all 500ms;
+}
+
+.passive {
+  color: rgba(255, 255, 255, 0.336);
+}

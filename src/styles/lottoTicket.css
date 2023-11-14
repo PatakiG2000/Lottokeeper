@@ -11,10 +11,12 @@
     -webkit-backdrop-filter: blur(9.2px);
     border: 1px solid rgba(49, 87, 180, 0.79);
     transition: all 120ms;
+    width: 60%;
 }
+
 .betted-number-container {
-display: flex;
-gap: 12px;
+    display: flex;
+    gap: 12px;
 }
 
 .lottery-ticket-number {
@@ -30,4 +32,12 @@ gap: 12px;
     border-radius: 50%;
     justify-content: center;
     align-items: center;
+}
+
+.won-number {
+    background-color: rgba(0, 128, 0, 0.514);
+}
+
+.ticket-number-container {
+    margin-right: auto;
 }
