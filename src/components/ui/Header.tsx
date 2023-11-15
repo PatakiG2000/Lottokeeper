@@ -12,13 +12,13 @@ type Props = {
 
 const Header = (props: Props) => {
 
-  const { currentUser, changeCurrentUser } = useContext(AppContext)
+  const { currentUser, changeCurrentUser, playername } = useContext(AppContext)
 
   return (
     <div className='header'>
       <div>
         <div className='header-switch'>
-          <button onClick={() => changeCurrentUser("player")} className={currentUser === "player" ? `currentuser` : "passive"}>Guest</button>
+          <button onClick={() => changeCurrentUser("player")} className={currentUser === "player" ? `currentuser` : "passive"}>{!playername ? "Guest" : playername}</button>
           <button onClick={() => changeCurrentUser("admin")} className={currentUser === "player" ? `passive` : "currentuser"}>Admin</button>
         </div>
       </div>

@@ -13,16 +13,18 @@ const PlayerDashboard = () => {
   const [nameInput, setNameInput] = useState<string>("")
   const [inputShowing, setInputShowing] = useState(playerName ? false : true)
 
-  const { winningNumbers, drawn, playerWinnings, playerTickets } = useContext(AppContext)
+
+  const { winningNumbers, drawn, playerWinnings, playerTickets, setPlayername: setNameInContext } = useContext(AppContext)
 
 
 
   function changePlayerName(name: string) {
-    const newName = name !== "" ? name : playerName
+    const newName = name !== "" ? name : "Guest"
     setPlayerName(newName)
+    setNameInContext(newName)
     setNameInput('')
     setInputShowing(!inputShowing)
-    localStorage.setItem("playername", name)
+    localStorage.setItem("playername", newName)
   }
 
 
@@ -34,9 +36,9 @@ const PlayerDashboard = () => {
         <div className='player-dashboard-name'>
           <h1>Welcome {playerName} </h1>
           {inputShowing && <div>
-            <input onKeyDown={e => e.key === 'Enter' ? changePlayerName(nameInput) : ""} className='namechange' type='text' placeholder="Enter your new name..." onChange={e => setNameInput(e.target?.value as string)} value={nameInput} maxLength={20} />
+            <input name='name-input' onKeyDown={e => e.key === 'Enter' ? changePlayerName(nameInput) : ""} className='namechange' type='text' placeholder="Enter your new name..." onChange={e => setNameInput(e.target?.value as string)} value={nameInput} maxLength={10} />
           </div>}
-          <button onClick={() => changePlayerName(nameInput)}><BiSolidPencil /></button>
+          <button onClick={() => setInputShowing(!inputShowing)}><BiSolidPencil /></button>
         </div>
       </div>
       <GuessNumbers />

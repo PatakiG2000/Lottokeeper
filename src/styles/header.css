@@ -28,3 +28,24 @@
 .passive {
   color: rgba(255, 255, 255, 0.336);
 }
+
+@media (max-width: 613px) {
+
+  .header-switch {
+    flex-direction: column;
+  }
+
+}
+
+@media (max-width: 400px) {
+
+
+  .header {
+    font-size: 28px;
+  }
+
+  .header-switch {
+    margin-right: 15px;
+  }
+
+}

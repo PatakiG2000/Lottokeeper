@@ -20,6 +20,7 @@ function App() {
   return (
 
     <div className="App">
+      <div className='infos'><p>App made by <a href="https://github.com/PatakiG2000" target="_blank" rel='noreferrer'>PatakiG</a>as a trial task for Liftkeeper the code is available <a href="">here.</a></p></div>
       <div className='lottery-container'>
         <Header currentUser={currentUser} changeUser={changeCurrentUser} />
         <AnimatePresence mode="wait">

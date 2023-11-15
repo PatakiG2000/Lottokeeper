@@ -14,7 +14,7 @@ const GameControl = () => {
     const numbers: number[] = [];
 
     while (numbers.length < 5) {
-      let randomNumber = Math.floor(Math.random() * 39.99 + 1);
+      let randomNumber = Math.floor(Math.random() * 39 + 1);
       if (!numbers.includes(randomNumber)) {
         numbers.push(randomNumber);
       }

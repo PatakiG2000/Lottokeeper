@@ -11,7 +11,6 @@
     -webkit-backdrop-filter: blur(9.2px);
     border: 1px solid rgba(49, 87, 180, 0.79);
     transition: all 120ms;
-    width: 60%;
 }
 
 .betted-number-container {
@@ -34,6 +33,16 @@
     align-items: center;
 }
 
+.playerticket-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+
+
 .won-number {
     background-color: rgba(0, 128, 0, 0.514);
 }
@@ -41,3 +50,15 @@
 .ticket-number-container {
     margin-right: auto;
 }
+
+
+
+
+@media (max-width: 896px) {
+    .ticket {
+        font-size: 14px;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 475px) {}

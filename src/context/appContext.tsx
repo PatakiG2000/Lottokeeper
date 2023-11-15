@@ -15,6 +15,7 @@ export const AppContext = createContext<{
   buyTicket: () => void,
   newRound: () => void,
   draw: (winningNumbers: number[]) => void,
+  setPlayername: (name: string) => void,
   currentUser: User,
   balance: {
     playerBalance: number,
@@ -26,6 +27,7 @@ export const AppContext = createContext<{
   statistics: Statistics,
   winningNumbers: number[],
   playerWinnings: number,
+  playername: string
 
 
 }>({
@@ -36,6 +38,7 @@ export const AppContext = createContext<{
   newRound: () => { },
   reset: () => { },
   draw: () => { },
+  setPlayername: () => { },
   currentUser: "player",
   balance: {
     playerBalance: 0,
@@ -57,13 +60,16 @@ export const AppContext = createContext<{
     amountNeedToBePaid: 0,
   },
   winningNumbers: [],
-  playerWinnings: 0
+  playerWinnings: 0,
+  playername: "",
+
 })
 
 export function AppContextProvider({ children }: { children: ReactNode }) {
 
 
   const [currentUser, setCurrentUser] = useState<User>("player")
+  const [playername, setPlayername] = useState<string>(localStorage.getItem("playername") === "" ? "Guest" : localStorage.getItem("playername") as string)
 
   const [playerTickets, setPlayerTickets] = useState<Ticket[]>([])
   const [tickets, setTickets] = useState<Ticket[]>([])
@@ -75,8 +81,8 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
     playerBalance: number,
     adminBalance: number
   }>({
-    playerBalance: JSON.parse(localStorage.getItem("playermoney") as string),
-    adminBalance: JSON.parse(localStorage.getItem("adminmoney") as string),
+    playerBalance: JSON.parse(localStorage.getItem("playermoney") as string ?? 10000),
+    adminBalance: JSON.parse(localStorage.getItem("adminmoney") as string ?? 0),
   })
 
   const [playerWinnings, setPlayerWinnings] = useState<number>(0)
@@ -302,6 +308,7 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
     buyTicket,
     newRound,
     changeCurrentUser,
+    setPlayername,
     reset,
     draw,
     currentUser,
@@ -311,7 +318,8 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
     drawn,
     statistics,
     winningNumbers,
-    playerWinnings
+    playerWinnings,
+    playername
 
   }}>{children}</AppContext.Provider>
 }

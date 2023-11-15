@@ -77,3 +77,12 @@
     font-weight: 700;
     gap: 12px;
 }
+
+
+@media (max-width: 533px) {
+
+    .winning-numbers-admin {
+        flex-direction: column;
+    }
+
+}

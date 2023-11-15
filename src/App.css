@@ -11,12 +11,18 @@
   align-items: center;
   justify-content: center;
   background-color: #a6a6bc;
-opacity: 0.8;
-background-color: #19191c;
-opacity: 1;
-background-image:  radial-gradient(#1d5250 1px, transparent 1px), radial-gradient(#1d5250 1px, #19191c 1px);
-background-size: 40px 40px;
-background-position: 0 0,20px 20px;
+  opacity: 0.8;
+  background-color: #19191c;
+  opacity: 1;
+  background-image: radial-gradient(#1d5250 1px, transparent 1px), radial-gradient(#1d5250 1px, #19191c 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  position: relative;
+}
+
+.infos {
+  position: absolute;
+  bottom: 0;
 }
 
 .lottery-container {
@@ -37,3 +43,12 @@ background-position: 0 0,20px 20px;
   display: none;
 }
 
+@media (max-width: 613px) {
+
+  .lottery-container {
+    width: 95%;
+    padding: 30px;
+  }
+
+
+}
