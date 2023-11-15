@@ -1,46 +1,61 @@
 # Getting Started with Create React App
 
+  
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+  
 
 ## Available Scripts
 
-In the project directory, you can run:
+  
 
 ### `npm start`
 
+  
+
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  
+ 
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+  
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Döntések
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Projekt Alapok
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Az applikációhoz Reactet használtam, typescripttel, ami nagyban megkönnyíti a fejlesztési folyamatot, React frameworkok használatát nem éreztem indokoltnak. 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Stílus 
 
-## Learn More
+A stílusért default CSS felel, amit az átláthatóság kedvéért külön fileokba helyeztem el. Nem a design volt az elsődlegesen fókuszban, de szerintem sikerült átláthatóvá tenni, és reszponzív is.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Third party libraries
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Két third-libraryt használ az applikáció, a React Framer Motiont, hogy legyen egy kis plusz az interfacen, illetve a uuid-ot, amely segít a lotto ticket és egy egyéb keyek generálásában.
+
+### Global state management
+
+State managementhez a React Contextet választottam, mert úgy gondoltam, hogy egy Redux például sok és felesleges lett volna, hiszen az applikációra nem jellemzőek a high-frequency changek, illetve ezen felül egyéb third party library használatát sem éreztem indokoltnak. 
+
+### Randomizáció
+
+Az applikációban, lévén, hogy nem éles összegek forognak kockán egy egyszerű Math.random() funkcióval generálom le az 5 számot, de mivel a generálás egy functionben történik mindig, így bármikor könnyen változtatható a randomizáció algoritmusa. 
+
+### Nyeremények kiosztása
+
+A ház minden egyes eladott jegy után kap profitot, ami nem kerül a prize poolba, majd a prize poolban felgyülemlett összeget, osztja el aszerint, hogy egyes találatok után mennyi a megszerezhető maximum összeg, majd azt az összeget továbbosztja a találatos szelvényeknek. Ezzel elkerülhető, hogy egy két találatos szelvény is elnyerje a főnyereményt, illetve megmarad a valódi lottósorsolások, azon logikája, hogy a találatokkal rendelkező szelvények osztoszkodnak. A nyereményalap képes növekedni, ezzel együtt nő az ötös találattal megnyerhető összeg is, ami szimulálni hivatott a valódi sorsolásokat. 
+
+Az arányok elosztása pedig könnyen változtatható, mindössze a prizeControls.ts ben található változóban lehet az értékeket átírni. 
+
+
+

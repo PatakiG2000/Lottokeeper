@@ -2,6 +2,7 @@
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
   color: aliceblue;
+  padding: 0;
 }
 
 .App {
@@ -37,10 +38,29 @@
   backdrop-filter: blur(3.1px);
   -webkit-backdrop-filter: blur(3.1px);
   border: 1px solid rgba(49, 87, 180, 0.79);
+  margin-bottom: 2px;
 }
 
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+.lottery-container {
+  scrollbar-width: thin;
+  scrollbar-color: #d12e2e #1d1b1b;
+}
+
+/* Chrome, Edge, and Safari */
 .lottery-container::-webkit-scrollbar {
-  display: none;
+  width: 8px;
+}
+
+.lottery-container::-webkit-scrollbar-track {
+  background: #1d1b1b00;
+}
+
+.lottery-container::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 15px;
+  border: 0px solid #ffffff;
 }
 
 @media (max-width: 613px) {
@@ -48,6 +68,16 @@
   .lottery-container {
     width: 95%;
     padding: 30px;
+  }
+
+
+}
+
+
+@media (max-width: 555px) {
+
+  .infos {
+    font-size: 13px;
   }
 
 

@@ -42,8 +42,8 @@ const PlayerDashboard = () => {
         </div>
       </div>
       <GuessNumbers />
-      <h2>Winning numbers: {winningNumbers.length > 0 ? <TicketNumbers numbers={winningNumbers} winningNumbers={winningNumbers} /> : "Yet to be drawn"} </h2>
-      <h2>Winnings: {winningNumbers.length > 0 ? playerWinnings : "Yet to be drawn"} </h2>
+      <h2 className='winning-numbers'>Winning numbers: {winningNumbers.length > 0 ? <TicketNumbers numbers={winningNumbers} winningNumbers={winningNumbers} /> : "Yet to be drawn"} </h2>
+      <h2>Winnings: {winningNumbers.length > 0 ? playerWinnings + "$" : "Yet to be drawn"} </h2>
       <TicketList tickets={playerTickets} winningNumbers={winningNumbers} drawn={drawn} currentUser='player' />
     </div>
   )

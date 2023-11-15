@@ -15,6 +15,10 @@
     cursor: pointer;
 }
 
+.winning-numbers {
+    line-height: 40px;
+}
+
 .namechange {
     background: none;
     margin-bottom: 12px;
@@ -35,5 +39,11 @@
         gap: 0;
         padding: 0;
         font-size: 12px;
+    }
+}
+
+@media (max-width: 535px) {
+    .player-dashboard-name {
+        flex-direction: column;
     }
 }

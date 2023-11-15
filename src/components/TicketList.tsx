@@ -44,7 +44,7 @@ const TicketList = ({ tickets, winningNumbers, drawn, currentUser }: Props) => {
   const sorting = <select name="sorting" onChange={handleSelectionChange} className='player-ticket-selecting'>
     <option value="default">Sort by: </option>
     <option value="ascending">Hits: low to high</option>
-    <option value="descending">Hits: hight to low</option>
+    <option value="descending">Hits: high to low</option>
   </select>
 
   return (
@@ -53,9 +53,10 @@ const TicketList = ({ tickets, winningNumbers, drawn, currentUser }: Props) => {
         <h2> My tickets: </h2>
         {drawn && sorting}
       </div>
-      <ul className='playerticket-list'>
+      {tickets?.length > 0 && <ul className='playerticket-list'>
         {ticketList}
-      </ul>
+      </ul>}
+
     </div>
   )
 }
