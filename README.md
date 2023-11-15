@@ -43,7 +43,7 @@ A stílusért default CSS felel, amit az átláthatóság kedvéért külön fil
 
 ### Third party libraries
 
-Két third-libraryt használ az applikáció, a React Framer Motiont, hogy legyen egy kis plusz az interfacen, illetve a uuid-ot, amely segít a lotto ticket és egy egyéb keyek generálásában.
+Két third-libraryt használ az applikáció, a React Framer Motiont, hogy legyen egy kis plusz az interfacen, illetve a nanoid-t, amely segít a lotto ticket és egy egyéb keyek generálásában.
 
 ### Global state management
 
