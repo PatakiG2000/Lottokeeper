@@ -27,7 +27,7 @@ const GameControl = () => {
     if (amount === 0) {
       return
     }
-    if (amount >= 7500) {
+    if (amount >= 3000) {
       return
     }
 
