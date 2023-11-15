@@ -59,7 +59,7 @@ const GameControl = () => {
       <div>
         <button className="admin-reset-btn" onClick={() => reset()}>New Game</button>
       </div>
-      <input className="admin-input" type="number" disabled={drawn} onChange={(e) => setNumberOfGames(Number(e.target.value))} max={7500} placeholder="0 - 7499" />
+      <input className="admin-input" type="number" disabled={drawn} onChange={(e) => setNumberOfGames(Number(e.target.value))} max={3000} placeholder="0 - 2999" />
       <button className={`admin-reset-btn ${drawn ? "disabled" : ""}`} onClick={() => generateTickets(numberOfGames)} disabled={drawn}>Generate {numberOfGames} tickets</button>
       <div>
         {!drawn ? <button className={`admin-reset-btn ${drawn ? "disabled" : ""}`} onClick={() => generateWinningNumbers()} disabled={drawn}>Draw</button> : <button className="admin-reset-btn" onClick={() => newRound()}>New Round</button>}
